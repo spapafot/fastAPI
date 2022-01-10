@@ -15,6 +15,9 @@ jobs:
       ALGORITHM: HS256
       ACCESS_TOKEN_EXPIRE_MINUTES: 60
     runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres
     steps:
       - name: Pull Git Repo
         uses: actions/checkout@v2
