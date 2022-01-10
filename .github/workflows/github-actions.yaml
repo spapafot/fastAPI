@@ -7,7 +7,7 @@ jobs:
   job1:
     env:
       DATABASE_HOSTNAME: localhost
-      DATABASE_PORT: 8000
+      DATABASE_PORT: 5432
       DATABASE_NAME: fastapi
       DATABASE_USERNAME: ${{ secrets.DATABASE_USERNAME }}
       DATABASE_PASSWORD: ${{ secrets.DATABASE_PASSWORD }}
@@ -22,7 +22,7 @@ jobs:
           POSTGRES_PASSWORD: ${{ secrets.DATABASE_PASSWORD }}
           POSTGRES_DB: fastapi_test
         ports:
-          - 8000:8000
+          - 5432:5432
         options: >-
           --health-cmd pg_isready
           --health-interval 10s
