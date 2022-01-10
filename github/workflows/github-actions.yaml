@@ -1,0 +1,13 @@
+name: Deploy Actions
+on:
+  push:
+    branches: 
+      - "main"
+jobs:
+  job1:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Pull Git Repo
+        uses: actions/checkout@v2
+      - name: Test
+        run: Pytest
