@@ -10,6 +10,7 @@ class User(BaseModel):
 
 
 class UserCreate(BaseModel):
+    id: int
     email: EmailStr
 
     class Config:

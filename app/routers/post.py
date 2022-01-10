@@ -27,7 +27,7 @@ async def create_post(post: schemas.PostCreate, db: Session = Depends(get_db), c
     return new_post
 
 
-@router.get("/{id}", response_model=schemas.Post)
+@router.get("/{id}", response_model=schemas.PostOut)
 def get_post(id: int, response: Response, db: Session = Depends(get_db)):
     
     post = db.query(models.Post, count(models.Vote.post_id).label("votes")) \
@@ -47,7 +47,7 @@ def delete_post(id: int, db: Session = Depends(get_db), current_user: int = Depe
     if post == None:
         raise HTTPException(status.HTTP_404_NOT_FOUND, "Post Does Not Exist")
     if post.user_id != current_user.id:
-        raise HTTPException(status.HTTP_403_FORBIDDEN, "Not Authorized")
+        raise HTTPException(status.HTTP_401_UNAUTHORIZED, "Not Authorized")
     
     db.delete(post)
     db.commit()
